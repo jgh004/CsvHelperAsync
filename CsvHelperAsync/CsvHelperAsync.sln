@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsvHelperAsync", "CsvHelperAsync.csproj", "{C425D531-7EC7-49F0-BE1C-86089D9A7DF3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsvHelperAsync.Test", "..\CsvHelperAsync.Test\CsvHelperAsync.Test.csproj", "{86541A5A-3050-49A3-87CA-0422FF565753}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C425D531-7EC7-49F0-BE1C-86089D9A7DF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C425D531-7EC7-49F0-BE1C-86089D9A7DF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C425D531-7EC7-49F0-BE1C-86089D9A7DF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C425D531-7EC7-49F0-BE1C-86089D9A7DF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86541A5A-3050-49A3-87CA-0422FF565753}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86541A5A-3050-49A3-87CA-0422FF565753}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86541A5A-3050-49A3-87CA-0422FF565753}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86541A5A-3050-49A3-87CA-0422FF565753}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
