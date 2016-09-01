@@ -20,7 +20,7 @@ namespace CsvHelperAsync
         /// <summary>
         /// 获取或设置通知事件参数
         /// </summary>
-        private IProgress<int> Progress;
+        private IProgress<CsvWriteProgressInfo> Progress;
 
 
         /// <summary>
@@ -82,8 +82,31 @@ namespace CsvHelperAsync
         /// <param name="progress">通知事件参数, 每次通返回自上次通知以来写入的行数. 默认为 null, 表示不通知.</param>
         /// <param name="writeProgressSize">当写入多少条数据时应触发进度通知事件, 默认为 1000, 此值应大于 0.</param>
         public CsvWriteHelper( Stream stream, Encoding dataEncoding, CsvFlag flag
-            , CancellationToken cancelToken, IProgress<int> progress = null, int writeProgressSize = 1000 )
+            , CancellationToken cancelToken, IProgress<CsvWriteProgressInfo> progress = null, int writeProgressSize = 1000 )
         {
+            if ( stream == null )
+            {
+                throw new ArgumentNullException( "stream" );
+            }
+
+            if ( dataEncoding == null )
+            {
+                throw new ArgumentNullException( "dataEncoding" );
+            }
+
+            if ( flag == null )
+            {
+                throw new ArgumentNullException( "flag" );
+            }
+
+            if ( progress != null )
+            {
+                if ( writeProgressSize <= 0 )
+                {
+                    throw new ArgumentException( "The property 'writeProgressSize' must be greater than 0" );
+                }
+            }
+
             this.ColumnCount = 0;
             this.TotalRowCount = 0L;
             this.DataEncoding = dataEncoding;
@@ -102,7 +125,7 @@ namespace CsvHelperAsync
         /// <param name="cancelToken">取消操作的token</param>
         /// <param name="progress">通知事件参数, 每次通返回自上次通知以来写入的行数. 默认为 null, 表示不通知.</param>
         /// <param name="writeProgressSize">当写入多少条数据时应触发进度通知事件, 默认为 1000, 此值应大于 0.</param>
-        public CsvWriteHelper( Stream stream, CsvFlag flag, CancellationToken cancelToken, IProgress<int> progress = null, int writeProgressSize = 1000 )
+        public CsvWriteHelper( Stream stream, CsvFlag flag, CancellationToken cancelToken, IProgress<CsvWriteProgressInfo> progress = null, int writeProgressSize = 1000 )
             : this( stream, Encoding.UTF8, flag, cancelToken, progress, writeProgressSize )
         {
         }
@@ -114,7 +137,7 @@ namespace CsvHelperAsync
         /// <param name="cancelToken">取消操作的token</param>
         /// <param name="progress">通知事件参数, 每次通返回自上次通知以来写入的行数. 默认为 null, 表示不通知.</param>
         /// <param name="writeProgressSize">当写入多少条数据时应触发进度通知事件, 默认为 1000, 此值应大于 0.</param>
-        public CsvWriteHelper( Stream stream, CancellationToken cancelToken, IProgress<int> progress = null, int writeProgressSize = 1000 )
+        public CsvWriteHelper( Stream stream, CancellationToken cancelToken, IProgress<CsvWriteProgressInfo> progress = null, int writeProgressSize = 1000 )
             : this( stream, Encoding.UTF8, CsvFlag.FlagForRFC4180, cancelToken, progress, writeProgressSize )
         {
         }
@@ -125,7 +148,7 @@ namespace CsvHelperAsync
         /// <param name="stream">要写入的流</param>
         /// <param name="progress">通知事件参数, 每次通返回自上次通知以来写入的行数. 默认为 null, 表示不通知.</param>
         /// <param name="writeProgressSize">当写入多少条数据时应触发进度通知事件, 默认为 1000, 此值应大于 0.</param>
-        public CsvWriteHelper( Stream stream, IProgress<int> progress = null, int writeProgressSize = 1000 )
+        public CsvWriteHelper( Stream stream, IProgress<CsvWriteProgressInfo> progress = null, int writeProgressSize = 1000 )
             : this( stream, CancellationToken.None, progress, writeProgressSize )
         {
         }
@@ -141,7 +164,7 @@ namespace CsvHelperAsync
         /// <param name="progress">通知事件参数, 每次通返回自上次通知以来写入的行数. 默认为 null, 表示不通知.</param>
         /// <param name="writeProgressSize">当写入多少条数据时应触发进度通知事件, 默认为 1000, 此值应大于 0.</param>
         public CsvWriteHelper( string csvFileName, Encoding dataEncoding, CsvFlag flag
-            , CancellationToken cancelToken, IProgress<int> progress = null, int writeProgressSize = 1000 )
+            , CancellationToken cancelToken, IProgress<CsvWriteProgressInfo> progress = null, int writeProgressSize = 1000 )
             : this( File.Open( csvFileName, FileMode.Create ), dataEncoding, flag, cancelToken, progress, writeProgressSize )
         {
         }
@@ -154,7 +177,7 @@ namespace CsvHelperAsync
         /// <param name="cancelToken">取消操作的token</param>
         /// <param name="progress">通知事件参数, 每次通返回自上次通知以来写入的行数. 默认为 null, 表示不通知.</param>
         /// <param name="writeProgressSize">当写入多少条数据时应触发进度通知事件, 默认为 1000, 此值应大于 0.</param>
-        public CsvWriteHelper( string csvFileName, CsvFlag flag, CancellationToken cancelToken, IProgress<int> progress = null, int writeProgressSize = 1000 )
+        public CsvWriteHelper( string csvFileName, CsvFlag flag, CancellationToken cancelToken, IProgress<CsvWriteProgressInfo> progress = null, int writeProgressSize = 1000 )
             : this( csvFileName, Encoding.UTF8, flag, cancelToken, progress, writeProgressSize )
         {
         }
@@ -166,7 +189,7 @@ namespace CsvHelperAsync
         /// <param name="cancelToken">取消操作的token</param>
         /// <param name="progress">通知事件参数, 每次通返回自上次通知以来写入的行数. 默认为 null, 表示不通知.</param>
         /// <param name="writeProgressSize">当写入多少条数据时应触发进度通知事件, 默认为 1000, 此值应大于 0.</param>
-        public CsvWriteHelper( string csvFileName, CancellationToken cancelToken, IProgress<int> progress = null, int writeProgressSize = 1000 )
+        public CsvWriteHelper( string csvFileName, CancellationToken cancelToken, IProgress<CsvWriteProgressInfo> progress = null, int writeProgressSize = 1000 )
             : this( csvFileName, Encoding.UTF8, CsvFlag.FlagForRFC4180, cancelToken, progress, writeProgressSize )
         {
         }
@@ -177,7 +200,7 @@ namespace CsvHelperAsync
         /// <param name="csvFileName">csv 文件路径及名称</param>
         /// <param name="progress">通知事件参数, 每次通返回自上次通知以来写入的行数. 默认为 null, 表示不通知.</param>
         /// <param name="writeProgressSize">当写入多少条数据时应触发进度通知事件, 默认为 1000, 此值应大于 0.</param>
-        public CsvWriteHelper( string csvFileName, IProgress<int> progress = null, int writeProgressSize = 1000 )
+        public CsvWriteHelper( string csvFileName, IProgress<CsvWriteProgressInfo> progress = null, int writeProgressSize = 1000 )
             : this( csvFileName, CancellationToken.None, progress, writeProgressSize )
         {
         }
@@ -187,69 +210,17 @@ namespace CsvHelperAsync
         /// <summary>
         /// 异步写入单行数据, 可多次执行, 之后执行 Close 方法关闭写入流.
         /// </summary>
-        /// <param name="rowData">一行数据,由字段集合组成.</param>
-        /// <returns>Task</returns>
-        public async Task WriteLineAsync( IList<string> rowData )
-        {
-            if ( this.CancelToken.IsCancellationRequested )
-            {
-                CancelToken.ThrowIfCancellationRequested();
-            }
-
-            if ( this.CsvStream == null )
-            {
-                throw new NullReferenceException( "the csv stream is null" );
-            }
-
-            if ( rowData == null )
-            {
-                throw new ArgumentNullException( "rowData" );
-            }
-
-            //如果写入过一条数据, 则字段数固定. 如果再次写入的字段数不同, 报异常.
-            if ( this.ColumnCount > 0 && this.ColumnCount != rowData.Count )
-            {
-                throw new ArgumentException( "the rowData count must be equal to " + ColumnCount.ToString() );
-            }
-
-            if ( Progress != null )
-            {
-                if ( this.WriteProgressSize <= 0 )
-                {
-                    throw new ArgumentException( "The property 'WriteProgressSize' must be greater than 0" );
-                }
-            }
-
-            List<string> rows = this.SerializeRows( rowData );
-            await this.CsvStream.WriteLineAsync( rows[0] );
-            this.TotalRowCount++;
-
-            //设置字段数
-            if ( this.ColumnCount == 0 )
-            {
-                this.ColumnCount = rowData.Count;
-            }
-
-            //发送通知
-            if ( Progress != null )
-            {
-                //如果取余数=0, 发送通知.
-                if ( TotalRowCount % this.WriteProgressSize == 0L )
-                {
-                    Progress.Report( this.WriteProgressSize );
-                }
-            }
-        }
-
-        /// <summary>
-        /// 异步写入单行数据, 可多次执行, 之后执行 Close 方法关闭写入流.
-        /// </summary>
         /// <typeparam name="T">要写入的数据对象类型</typeparam>
         /// <param name="rowData">要写入的数据对象实例</param>
         /// <param name="expression">处理对象实例,返回字段集合的方法.</param>
         /// <returns>Task</returns>
-        public async Task WriteLineAsync<T>( T rowData, Func<T, IList<string>> expression ) where T : new()
+        public async Task WriteLineAsync<T>( T rowData, Func<T, List<string>> expression ) where T : new()
         {
+            if ( this.CancelToken.IsCancellationRequested )
+            {
+                this.CancelToken.ThrowIfCancellationRequested();
+            }
+
             if ( rowData == null )
             {
                 throw new ArgumentNullException( "rowData" );
@@ -260,25 +231,50 @@ namespace CsvHelperAsync
                 throw new ArgumentNullException( "expression" );
             }
 
-            await WriteLineAsync( expression.Invoke( rowData ) );
+            //取转换后的行数据
+            var row = expression.Invoke( rowData );
+
+            //如果写入过一条数据, 则字段数固定. 如果再次写入的字段数不同, 报异常.
+            if ( this.ColumnCount > 0 && this.ColumnCount != row.Count )
+            {
+                throw new ArgumentException( "the rowData count must be equal to " + ColumnCount.ToString() );
+            }
+
+            List<string> rows = this.SerializeRows( row );
+            await this.CsvStream.WriteLineAsync( rows[0] );
+            this.TotalRowCount++;
+
+            //设置字段数
+            if ( this.ColumnCount == 0 )
+            {
+                this.ColumnCount = row.Count;
+            }
+
+            //发送通知
+            if ( Progress != null )
+            {
+                //如果取余数=0, 发送通知.
+                if ( TotalRowCount % this.WriteProgressSize == 0L )
+                {
+                    CsvWriteProgressInfo info = new CsvHelperAsync.CsvWriteProgressInfo();
+                    info.CurrentRowCount = this.WriteProgressSize;
+                    info.WirteRowCount = this.TotalRowCount;
+                    Progress.Report( info );
+                }
+            }
         }
 
         /// <summary>
-        /// 异步写入多行数据, 可多次执行, 之后执行 Close 方法关闭写入流.
+        /// 异步写入单行数据, 可多次执行, 之后执行 Close 方法关闭写入流.
         /// </summary>
-        /// <param name="rowDataList">行数据集合</param>
+        /// <param name="rowData">一行数据,由字段集合组成.</param>
         /// <returns>Task</returns>
-        public async Task WriteAsync( IList<IList<string>> rowDataList )
+        public async Task WriteLineAsync( List<string> rowData )
         {
-            if ( rowDataList == null )
+            await WriteLineAsync( rowData, f=>
             {
-                throw new ArgumentNullException( "rowDataList" );
-            }
-
-            foreach ( var row in rowDataList )
-            {
-                await WriteLineAsync( row );
-            }
+                return f;
+            } );
         }
 
         /// <summary>
@@ -288,7 +284,7 @@ namespace CsvHelperAsync
         /// <param name="rowDataList">要写入的数据对象实例集合</param>
         /// <param name="expression">处理对象实例集合,返回包含字段集合的行集合方法.</param>
         /// <returns>Task</returns>
-        public async Task WriteAsync<T>( IList<T> rowDataList, Func<T, IList<string>> expression ) where T : new()
+        public async Task WriteAsync<T>( List<T> rowDataList, Func<T, List<string>> expression ) where T : new()
         {
             if ( rowDataList == null )
             {
@@ -297,8 +293,22 @@ namespace CsvHelperAsync
 
             foreach ( var row in rowDataList )
             {
-                await WriteLineAsync( row, expression );
+                //大量循环, 所以用 ConfigureAwait( false ).
+                await WriteLineAsync( row, expression ).ConfigureAwait( false );
             }
+        }
+
+        /// <summary>
+        /// 异步写入多行数据, 可多次执行, 之后执行 Close 方法关闭写入流.
+        /// </summary>
+        /// <param name="rowDataList">行数据集合</param>
+        /// <returns>Task</returns>
+        public async Task WriteAsync( List<List<string>> rowDataList )
+        {
+            await WriteAsync( rowDataList, f =>
+            {
+                return f;
+            } );
         }
 
         /// <summary>
@@ -321,13 +331,17 @@ namespace CsvHelperAsync
             if ( this.CsvStream != null )
             {
                 this.CsvStream.Close();
+                this.CsvStream = null;
 
                 if ( Progress != null )
                 {
                     //如果记录总数等于通知设定总数, 说明写入结束时刚好是要通知的数量, 但在 WriteLineAsync 方法中已经通知, 所以在这不再通知.
                     if ( TotalRowCount != WriteProgressSize )
                     {
-                        Progress.Report( (int)(TotalRowCount % this.WriteProgressSize) );
+                        CsvWriteProgressInfo info = new CsvHelperAsync.CsvWriteProgressInfo();
+                        info.CurrentRowCount = this.TotalRowCount % this.WriteProgressSize;
+                        info.WirteRowCount = this.TotalRowCount;
+                        Progress.Report( info );
                     }
                 }
             }
@@ -339,21 +353,21 @@ namespace CsvHelperAsync
         /// </summary>
         /// <param name="lines">转义前的行集合</param>
         /// <returns>转义后的行集合</returns>
-        private List<string> SerializeRows( params IList<string>[] lines )
+        private List<string> SerializeRows( params List<string>[] lines )
         {
             List<string> result = new List<string>();
 
             if ( lines != null )
             {
-                foreach ( var ss in lines )
+                foreach ( var line in lines )
                 {
                     StringBuilder sb = new StringBuilder( 2048 );
 
-                    for ( int i = 0; i < ss.Count; i++ )
+                    for ( int i = 0; i < line.Count; i++ )
                     {
-                        sb.Append( SerializeField( ss[i] ) );
+                        sb.Append( SerializeField( line[i] ) );
 
-                        if ( i + 1 < ss.Count )
+                        if ( i + 1 < line.Count )
                         {
                             sb.Append( this.Flag.FieldSeparator );
                         }

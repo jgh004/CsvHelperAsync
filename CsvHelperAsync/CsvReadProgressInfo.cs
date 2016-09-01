@@ -29,7 +29,7 @@ namespace CsvHelperAsync
         /// <summary>
         /// 获取当前批次的数据行集合
         /// </summary>
-        public List<T> RowsData
+        public List<T> CurrentRowsData
         {
             get;
             internal set;
@@ -38,7 +38,7 @@ namespace CsvHelperAsync
         /// <summary>
         /// 获取已读取的字节数
         /// </summary>
-        public long CurrentBytes
+        public long ReadBytes
         {
             get;
             internal set;
@@ -60,7 +60,7 @@ namespace CsvHelperAsync
         {
             get
             {
-                return this.TotalBytes <= 0 || this.CurrentBytes < 0 ? 0 : this.CurrentBytes / (decimal)this.TotalBytes * 100;
+                return this.TotalBytes <= 0 || this.ReadBytes < 0 ? 0 : this.ReadBytes / (decimal)this.TotalBytes * 100;
             }
         }
 
@@ -72,9 +72,9 @@ namespace CsvHelperAsync
         {
             this.IsComplete = false;
             this.ColumnNames = new List<string>();
-            this.RowsData = new List<T>();
-            this.CurrentBytes = 0;
-            this.TotalBytes = 0;
+            this.CurrentRowsData = new List<T>();
+            this.ReadBytes = 0L;
+            this.TotalBytes = 0L;
         }
     }
 }

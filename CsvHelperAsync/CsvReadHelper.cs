@@ -64,7 +64,7 @@ namespace CsvHelperAsync
         }
 
         /// <summary>
-        /// 获取写入的总行数
+        /// 获取读取的总行数
         /// </summary>
         public long TotalRowCount
         {
@@ -98,6 +98,21 @@ namespace CsvHelperAsync
         /// <param name="readStreamBufferLength">流读取缓冲大小, 默认为 40960 字节.</param>
         public CsvReadHelper( Stream stream, Encoding dataEncoding, CsvFlag flag, bool firstRowIsHead = true, int readStreamBufferLength = 40960 )
         {
+            if ( stream == null )
+            {
+                throw new ArgumentNullException( "stream" );
+            }
+
+            if ( dataEncoding == null )
+            {
+                throw new ArgumentNullException( "dataEncoding" );
+            }
+
+            if ( flag == null )
+            {
+                throw new ArgumentNullException( "flag" );
+            }
+
             this.CanRead = true;
             this.ColumnCount = 0;
             this.TotalRowCount = 0L;
@@ -160,6 +175,11 @@ namespace CsvHelperAsync
             , int readProgressSize = 1000 ) where T : new()
         {
             #region Check params
+            
+            if ( cancelToken.IsCancellationRequested )
+            {
+                cancelToken.ThrowIfCancellationRequested();
+            }
 
             if ( CanRead )
             {
@@ -168,11 +188,6 @@ namespace CsvHelperAsync
             else
             {
                 throw new Exception( "ReadAsync method allows only one call" );
-            }
-
-            if ( cancelToken.IsCancellationRequested )
-            {
-                cancelToken.ThrowIfCancellationRequested();
             }
 
             if ( progress == null )
@@ -195,7 +210,7 @@ namespace CsvHelperAsync
             //标题行
             List<string> columnNames = new List<string>();
             //通过通知事件返回的数据形式, 每次通知后将清空
-            List<T> rowsData = null;
+            List<T> rowsData = new List<T>();
             //用于临时存放不足一行的数据
             List<char> subLine = new List<char>();
 
@@ -243,27 +258,16 @@ namespace CsvHelperAsync
                     List<char> tInput = new List<char>( subLine );
                     tInput.AddRange( new char[] { '\r', '\n' } );//在末尾添加换行符
                     List<List<string>> lastRows = this.GetRows( tInput.ToArray(), ref tSubline );
+                    rows.AddRange( lastRows );
 
-                    if ( lastRows != null )
+                    //如果还有剩余字符,说明格式错误
+                    if ( tSubline.Count > 0 )
                     {
-                        if ( rows == null )
-                        {
-                            rows = lastRows;
-                        }
-                        else
-                        {
-                            rows.AddRange( lastRows );
-                        }
-
-                        //如果还有剩余字符,说明格式错误
-                        if ( tSubline.Count > 0 )
-                        {
-                            throw new Exception( "The csv file format error!" );
-                        }
-
-                        //为下一块数据使用准备
-                        subLine.Clear();
+                        throw new Exception( "The csv file format error!" );
                     }
+
+                    //为下一块数据使用准备
+                    subLine.Clear();
                 }
 
                 Progress( currentBytes, totalBytes, progress, expression, readProgressSize, rows, ref columnNames, ref rowsData );
@@ -284,6 +288,7 @@ namespace CsvHelperAsync
             if ( this.CsvStream != null )
             {
                 this.CsvStream.Close();
+                this.CsvStream = null;
             }
         }
 
@@ -303,13 +308,13 @@ namespace CsvHelperAsync
         private void Progress<T>( long currentBytes, long totalBytes
             , IProgress<CsvReadProgressInfo<T>> progress, Func<List<string>, T> expression, int readProgressSize
             , List<List<string>> rows, ref List<string> columnNames, ref List<T> rowsData ) where T : new()
-        {//生成通知数据
-            if ( rows != null && rows.Count > 0 )
+        {
+            //生成通知数据
+            if ( rows.Count > 0 )
             {
                 //当返回第一批数据时,将首行设为标题行.
-                if ( rowsData == null )
+                if ( columnNames.Count == 0 )
                 {
-                    rowsData = new List<T>();
                     List<string> firstRow = rows[0];
 
                     //如果第一行做为标题
@@ -342,25 +347,25 @@ namespace CsvHelperAsync
                     {
                         CsvReadProgressInfo<T> info = new CsvReadProgressInfo<T>();
                         info.ColumnNames = columnNames;
-                        info.RowsData = rowsData;
+                        info.CurrentRowsData = rowsData;
                         info.IsComplete = CsvStream.EndOfStream && i + 1 == rowsData.Count;
-                        info.CurrentBytes = currentBytes;
+                        info.ReadBytes = currentBytes;
                         info.TotalBytes = totalBytes;
+                        progress.Report( info );//异步触发事件
                         //重置通知数据
                         rowsData = new List<T>();
-                        progress.Report( info );//异步触发事件
                     }
                     else if ( CsvStream.EndOfStream && i + 1 == rows.Count ) //当读取批次不足指定行数且到了流末尾时
                     {
                         CsvReadProgressInfo<T> info = new CsvReadProgressInfo<T>();
                         info.ColumnNames = columnNames;
-                        info.RowsData = rowsData;
+                        info.CurrentRowsData = rowsData;
                         info.IsComplete = true;
-                        info.CurrentBytes = currentBytes;
+                        info.ReadBytes = currentBytes;
                         info.TotalBytes = totalBytes;
+                        progress.Report( info );
                         //重置通知数据
                         rowsData = new List<T>();
-                        progress.Report( info );
                     }
                 }
             }
@@ -374,7 +379,7 @@ namespace CsvHelperAsync
         /// <returns>解析后的数据行集合</returns>
         private List<List<string>> GetRows( char[] input, ref List<char> subLine )
         {
-            List<List<string>> result = null;
+            List<List<string>> result = new List<List<string>>();
 
             if ( input != null )
             {
@@ -436,9 +441,9 @@ namespace CsvHelperAsync
         /// </summary>
         /// <param name="charLines">未还原的数据行集合</param>
         /// <returns>还原后的数据行集合</returns>
-        private List<List<string>> DeserializeRows( params IList<char>[] charLines )
+        private List<List<string>> DeserializeRows( params List<char>[] charLines )
         {
-            List<List<string>> result = null;
+            List<List<string>> result = new List<List<string>>();
 
             if ( charLines != null )
             {
@@ -481,19 +486,6 @@ namespace CsvHelperAsync
                         {
                             sline.Add( DeserializeField( new string( field.ToArray() ) ) );
                         }
-                    }
-
-                    //初始化返回数据
-                    if ( result == null )
-                    {
-                        //List<string> columns = new List<string>();
-
-                        //for ( int i = 0; i < sline.Count; i++ )
-                        //{
-                        //    columns.Add( i.ToString() );
-                        //}
-
-                        result = new List<List<string>>();
                     }
 
                     result.Add( sline );
