@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany( "ITnmg.net" )]
 [assembly: AssemblyProduct("CsvHelperAsync")]
-[assembly: AssemblyCopyright( "Copyright ©  ITnmg.net  2016" )]
+[assembly: AssemblyCopyright( "Copyright © 2016 ITnmg.net" )]
 [assembly: AssemblyTrademark( "CsvHelperAsync" )]
 [assembly: AssemblyCulture("")]
 

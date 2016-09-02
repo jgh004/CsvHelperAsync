@@ -8,6 +8,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsvHelperAsync.Test", "..\CsvHelperAsync.Test\CsvHelperAsync.Test.csproj", "{86541A5A-3050-49A3-87CA-0422FF565753}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E068310F-5FB0-402E-8F7D-838CD0558DC1}"
+	ProjectSection(SolutionItems) = preProject
+		CsvHelperAsync.nuspec = CsvHelperAsync.nuspec
+	EndProjectSection
 EndProject
 Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "nuget", "..\.nuget\nuget.exe", "{3A5B4F58-3424-47A6-87A0-23972E2B644C}"
 	ProjectSection(DebuggerProjectSystem) = preProject
@@ -24,8 +27,8 @@ Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "nuget", "..\.nuget\nuget.ex
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3BF16A73-5BC8-4DE2-A6FB-525AFA278209}"
 	ProjectSection(SolutionItems) = preProject
-		..\logo.png = ..\logo.png
-		..\test.png = ..\test.png
+		..\Solution Items\logo.png = ..\Solution Items\logo.png
+		..\Solution Items\test.png = ..\Solution Items\test.png
 	EndProjectSection
 EndProject
 Global
