@@ -24,6 +24,7 @@ Run the following command in the Package Manager Console.
         Progress<CsvReadProgressInfo<T>> progress = new Progress<CsvReadProgressInfo<T>>( e =>
         {
             //Update ui should use SynchronizationContext. 更新 ui 时应使用 SynchronizationContext 相关方法.
+            SetColumnHeads( e.ColumnNames );
             ShowData( e.CurrentRowsData );
             SetProgress( Convert.ToInt32( e.ProgressValue ) );
         } );
@@ -33,8 +34,39 @@ Run the following command in the Package Manager Console.
         {
             await csvReader.ReadAsync( progress, f =>
             {
-                return ConvertCsvRowToCustomerModel( f );
+                return ConvertCsvRowToCustomModel( f );
             }, cancelToken, 1000 );
         }, cancelToken );
+        
+        csvReader.Close();
     }
     
+### Writing csv
+    public async void WriteCsv(...)
+    {
+        //using delegate to get rows data. 使用委托获取数据
+        Progress<CsvWriteProgressInfo> progress = new Progress<CsvWriteProgressInfo>( e =>
+        {
+            //Update ui should use SynchronizationContext. 更新 ui 时应使用 SynchronizationContext 相关方法.
+            SetProgress( Convert.ToInt32( e.WirteRowCount / totalRowCount ) * 100 );
+        } );
+        
+        var csvWriter = new CsvWriteHelper( fileName or stream, encoding, flag, cancelToken, progress, 1000 );
+        
+        //prevent ui thread blocking. 防止 ui 线程阻塞
+        await Task.Run( async () =>
+        {
+            await csvWriter.WriteLineAsync( columnNames );
+            await csvWriter.WriteAsync( modelList, f =>
+            {
+                return ConvertCustomModelToRowData( f );
+            } );
+            ...
+            ...
+            ...
+            await csvWriter.WriteAsync(...);
+
+            await csvWriter.FlushAsync();
+            csvWriter.Close();
+        }, cancelToken );
+    }
