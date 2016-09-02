@@ -23,7 +23,7 @@ Run the following command in the Package Manager Console.
         //using delegate to get rows data. 使用委托获取数据
         Progress<CsvReadProgressInfo<T>> progress = new Progress<CsvReadProgressInfo<T>>( e =>
         {
-            //Update ui should use SynchronizationContext. 更新 ui 时应使用 SynchronizationContext 相关方法.
+            //Update ui should be use SynchronizationContext. 更新 ui 时应使用 SynchronizationContext 相关方法.
             SetColumnHeads( e.ColumnNames );
             ShowData( e.CurrentRowsData );
             SetProgress( Convert.ToInt32( e.ProgressValue ) );
@@ -47,7 +47,7 @@ Run the following command in the Package Manager Console.
         //using delegate to get rows data. 使用委托获取数据
         Progress<CsvWriteProgressInfo> progress = new Progress<CsvWriteProgressInfo>( e =>
         {
-            //Update ui should use SynchronizationContext. 更新 ui 时应使用 SynchronizationContext 相关方法.
+            //Update ui should be use SynchronizationContext. 更新 ui 时应使用 SynchronizationContext 相关方法.
             SetProgress( Convert.ToInt32( e.WirteRowCount / totalRowCount ) * 100 );
         } );
         
