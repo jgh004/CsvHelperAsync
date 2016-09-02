@@ -53,13 +53,13 @@
             this.tb_FileName.Location = new System.Drawing.Point(12, 12);
             this.tb_FileName.Margin = new System.Windows.Forms.Padding(4);
             this.tb_FileName.Name = "tb_FileName";
-            this.tb_FileName.Size = new System.Drawing.Size(882, 25);
+            this.tb_FileName.Size = new System.Drawing.Size(881, 25);
             this.tb_FileName.TabIndex = 4;
             // 
             // bt_Open
             // 
             this.bt_Open.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_Open.Location = new System.Drawing.Point(912, 10);
+            this.bt_Open.Location = new System.Drawing.Point(897, 10);
             this.bt_Open.Margin = new System.Windows.Forms.Padding(4);
             this.bt_Open.Name = "bt_Open";
             this.bt_Open.Size = new System.Drawing.Size(56, 29);
@@ -82,13 +82,13 @@
             this.dgv_Data.Name = "dgv_Data";
             this.dgv_Data.ReadOnly = true;
             this.dgv_Data.RowTemplate.Height = 23;
-            this.dgv_Data.Size = new System.Drawing.Size(1279, 541);
+            this.dgv_Data.Size = new System.Drawing.Size(1278, 541);
             this.dgv_Data.TabIndex = 6;
             // 
             // bt_Save
             // 
             this.bt_Save.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_Save.Location = new System.Drawing.Point(975, 10);
+            this.bt_Save.Location = new System.Drawing.Point(960, 10);
             this.bt_Save.Margin = new System.Windows.Forms.Padding(4);
             this.bt_Save.Name = "bt_Save";
             this.bt_Save.Size = new System.Drawing.Size(57, 29);
@@ -171,7 +171,7 @@
             this.pb_Progress.Location = new System.Drawing.Point(12, 82);
             this.pb_Progress.Margin = new System.Windows.Forms.Padding(4);
             this.pb_Progress.Name = "pb_Progress";
-            this.pb_Progress.Size = new System.Drawing.Size(1258, 29);
+            this.pb_Progress.Size = new System.Drawing.Size(1257, 29);
             this.pb_Progress.TabIndex = 16;
             // 
             // label5
@@ -194,7 +194,7 @@
             // bt_GenerateTestData
             // 
             this.bt_GenerateTestData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_GenerateTestData.Location = new System.Drawing.Point(1113, 10);
+            this.bt_GenerateTestData.Location = new System.Drawing.Point(1112, 10);
             this.bt_GenerateTestData.Name = "bt_GenerateTestData";
             this.bt_GenerateTestData.Size = new System.Drawing.Size(158, 29);
             this.bt_GenerateTestData.TabIndex = 19;
@@ -205,7 +205,7 @@
             // bt_Cancel
             // 
             this.bt_Cancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bt_Cancel.Location = new System.Drawing.Point(1040, 10);
+            this.bt_Cancel.Location = new System.Drawing.Point(1024, 10);
             this.bt_Cancel.Name = "bt_Cancel";
             this.bt_Cancel.Size = new System.Drawing.Size(65, 29);
             this.bt_Cancel.TabIndex = 20;
@@ -217,7 +217,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1283, 664);
+            this.ClientSize = new System.Drawing.Size(1282, 664);
             this.Controls.Add(this.bt_Cancel);
             this.Controls.Add(this.bt_GenerateTestData);
             this.Controls.Add(this.tb_Times);
