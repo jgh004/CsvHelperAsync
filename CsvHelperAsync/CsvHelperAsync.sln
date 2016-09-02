@@ -7,22 +7,60 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsvHelperAsync", "CsvHelper
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CsvHelperAsync.Test", "..\CsvHelperAsync.Test\CsvHelperAsync.Test.csproj", "{86541A5A-3050-49A3-87CA-0422FF565753}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E068310F-5FB0-402E-8F7D-838CD0558DC1}"
+EndProject
+Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "nuget", "..\.nuget\nuget.exe", "{3A5B4F58-3424-47A6-87A0-23972E2B644C}"
+	ProjectSection(DebuggerProjectSystem) = preProject
+		PortSupplier = 00000000-0000-0000-0000-000000000000
+		Executable = D:\MyApp\CsvHelperAsync\.nuget\nuget.exe
+		RemoteMachine = AZZD
+		StartingDirectory = D:\MyApp\CsvHelperAsync\.nuget
+		Environment = 默认值
+		LaunchingEngine = 00000000-0000-0000-0000-000000000000
+		UseLegacyDebugEngines = No
+		LaunchSQLEngine = No
+		AttachLaunchAction = No
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3BF16A73-5BC8-4DE2-A6FB-525AFA278209}"
+	ProjectSection(SolutionItems) = preProject
+		..\logo.png = ..\logo.png
+		..\test.png = ..\test.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{C425D531-7EC7-49F0-BE1C-86089D9A7DF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C425D531-7EC7-49F0-BE1C-86089D9A7DF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C425D531-7EC7-49F0-BE1C-86089D9A7DF3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C425D531-7EC7-49F0-BE1C-86089D9A7DF3}.Debug|x86.Build.0 = Debug|Any CPU
 		{C425D531-7EC7-49F0-BE1C-86089D9A7DF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C425D531-7EC7-49F0-BE1C-86089D9A7DF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C425D531-7EC7-49F0-BE1C-86089D9A7DF3}.Release|x86.ActiveCfg = Release|Any CPU
+		{C425D531-7EC7-49F0-BE1C-86089D9A7DF3}.Release|x86.Build.0 = Release|Any CPU
 		{86541A5A-3050-49A3-87CA-0422FF565753}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{86541A5A-3050-49A3-87CA-0422FF565753}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86541A5A-3050-49A3-87CA-0422FF565753}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{86541A5A-3050-49A3-87CA-0422FF565753}.Debug|x86.Build.0 = Debug|Any CPU
 		{86541A5A-3050-49A3-87CA-0422FF565753}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{86541A5A-3050-49A3-87CA-0422FF565753}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86541A5A-3050-49A3-87CA-0422FF565753}.Release|x86.ActiveCfg = Release|Any CPU
+		{86541A5A-3050-49A3-87CA-0422FF565753}.Release|x86.Build.0 = Release|Any CPU
+		{3A5B4F58-3424-47A6-87A0-23972E2B644C}.Debug|Any CPU.ActiveCfg = Release|x86
+		{3A5B4F58-3424-47A6-87A0-23972E2B644C}.Debug|x86.ActiveCfg = Release|x86
+		{3A5B4F58-3424-47A6-87A0-23972E2B644C}.Release|Any CPU.ActiveCfg = Release|x86
+		{3A5B4F58-3424-47A6-87A0-23972E2B644C}.Release|x86.ActiveCfg = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3A5B4F58-3424-47A6-87A0-23972E2B644C} = {E068310F-5FB0-402E-8F7D-838CD0558DC1}
 	EndGlobalSection
 EndGlobal

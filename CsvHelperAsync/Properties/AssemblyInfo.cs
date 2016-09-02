@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("CsvHelperAsync")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription( "A library for async reading and writing csv file." )]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany( "ITnmg.net" )]
 [assembly: AssemblyProduct("CsvHelperAsync")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright( "Copyright ©  ITnmg.net  2016" )]
+[assembly: AssemblyTrademark( "CsvHelperAsync" )]
 [assembly: AssemblyCulture("")]
 
 //将 ComVisible 设置为 false 将使此程序集中的类型
