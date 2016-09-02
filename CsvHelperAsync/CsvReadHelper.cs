@@ -11,8 +11,8 @@
  * Creator:		IT农民工
  * Home:		www.ITnmg.net
  * Create date:	2011.12.01
- * Modified date:	2016.08.24
- * Version:		0.9.0
+ * Modified date:	2016.09.03
+ * Version:		1.0.0
  */
 using System;
 using System.Collections.Generic;
