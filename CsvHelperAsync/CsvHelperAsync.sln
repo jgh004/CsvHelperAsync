@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E068310F-5FB0-402E-8F7D-838CD0558DC1}"
 	ProjectSection(SolutionItems) = preProject
 		CsvHelperAsync.nuspec = CsvHelperAsync.nuspec
+		..\Pack & Push NuGet Packages.bat = ..\Pack & Push NuGet Packages.bat
 	EndProjectSection
 EndProject
 Project("{911E67C6-3D85-4FCE-B560-20A9C3E3FF48}") = "nuget", "..\.nuget\nuget.exe", "{3A5B4F58-3424-47A6-87A0-23972E2B644C}"
