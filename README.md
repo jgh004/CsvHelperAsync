@@ -1,20 +1,23 @@
 # CsvHelperAsync
-A library for async reading and writing csv file.
-简单易用的 csv 异步读写类库. 
+<img src="https://raw.githubusercontent.com/jgh004/CsvHelperAsync/master/Solution%20Items/logo.png" width="100px" />  
+  A library for async reading and writing csv file.  
+  简单易用的 csv 异步读写类库. 
 
 # Test Form
 ![实现效果](https://raw.githubusercontent.com/jgh004/CsvHelperAsync/master/Solution%20Items/test.png)
 
 # Install
 
-Run the following command in the Package Manager Console.
+Run the following command in the Package Manager Console.  
 在 nuget 包管理器控制台输入以下命令
 
     PM> Install-Package CsvHelperAsync
 
 # Getting Started
+
 ### Csv File IETF Standard
 [IETF RFC4180](https://tools.ietf.org/html/rfc4180)
+
 ### Reading csv
     public async void ReadCsv(...)
     {
