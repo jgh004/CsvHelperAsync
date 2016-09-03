@@ -51,7 +51,7 @@ Run the following command in the Package Manager Console.
         Progress<CsvWriteProgressInfo> progress = new Progress<CsvWriteProgressInfo>( e =>
         {
             //Update ui should be use SynchronizationContext. 更新 ui 时应使用 SynchronizationContext 相关方法.
-            SetProgress( Convert.ToInt32( e.WirteRowCount / totalRowCount ) * 100 );
+            SetProgress( Convert.ToInt32( e.WirteRowCount / totalRowCount * 100 ) );
         } );
         
         var csvWriter = new CsvWriteHelper( fileName or stream, encoding, flag, cancelToken, progress, 1000 );
