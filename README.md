@@ -19,7 +19,7 @@ Run the following command in the Package Manager Console.
 [IETF RFC4180](https://tools.ietf.org/html/rfc4180)
 
 ### Reading csv
-    public async void ReadCsv(...)
+    public async Task ReadCsv(...)
     {
         var csvReader = new CsvReadHelper( fileName or stream, encoding, flag, firstRowIsHead, readStreamBufferLength );
         
@@ -45,7 +45,7 @@ Run the following command in the Package Manager Console.
     }
     
 ### Writing csv
-    public async void WriteCsv(...)
+    public async Task WriteCsv(...)
     {
         //using delegate to get rows data. 使用委托获取数据
         Progress<CsvWriteProgressInfo> progress = new Progress<CsvWriteProgressInfo>( e =>
