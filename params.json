@@ -1,0 +1,6 @@
+{
+  "name": "CsvHelperAsync",
+  "tagline": "A library for async reading and writing csv file. 简单高效的 csv 异步读写类.",
+  "body": "### Welcome to CsvHelperAsync Pages.\r\nCsvHelperAsync is a library for async reading and writing csv file.  \r\n一个简单高效的 csv 异步读写类, 可读写大型 csv 文件.\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
