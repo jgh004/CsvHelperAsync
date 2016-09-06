@@ -8,10 +8,9 @@
     <owners>jgh004</owners>
     <licenseUrl>https://github.com/jgh004/CsvHelperAsync/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/jgh004/CsvHelperAsync</projectUrl>
-    <iconUrl>https://raw.githubusercontent.com/jgh004/CsvHelperAsync/master/Solution%20Items/logo.png</iconUrl>
+    <iconUrl>https://raw.githubusercontent.com/jgh004/CsvHelperAsync/master/SolutionItems/logo.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>https://github.com/jgh004/CsvHelperAsync</releaseNotes>
     <copyright>Copyright 2016 ITnmg.net</copyright>
     <tags>csv csvHelper csvHelperAsync csvAsync csvRead csvWrite</tags>
   </metadata>

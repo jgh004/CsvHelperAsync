@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("CsvHelperAsync")]
-[assembly: AssemblyDescription( "A library for async reading and writing csv file. 简单易用的 csv 异步读写类库. See https://github.com/jgh004/CsvHelperAsync" )]
+[assembly: AssemblyDescription( "A library of asynchronous read and write large csv file. 简单高效的 csv 异步读写类, 可读写大型 csv 文件. See https://github.com/jgh004/CsvHelperAsync" )]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany( "ITnmg.net" )]
 [assembly: AssemblyProduct("CsvHelperAsync")]
