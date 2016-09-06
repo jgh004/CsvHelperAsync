@@ -12,6 +12,6 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <copyright>Copyright 2016 ITnmg.net</copyright>
-    <tags>csv csvHelper csvHelperAsync csvAsync csvRead csvWrite</tags>
+    <tags>csv csvFile csvStream csvHelper csvHelperAsync csvAsync csvRead csvWrite</tags>
   </metadata>
 </package>
