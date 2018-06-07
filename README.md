@@ -5,7 +5,7 @@
   简单易用的 csv 异步读写类库, 可读写大型 csv 文件. 
 
 # Test Form
-![实现效果](https://raw.githubusercontent.com/jgh004/CsvHelperAsync/master/SolutionItems/test.png)
+![实现效果](https://raw.githubusercontent.com/jgh004/CsvHelperAsync/master/SolutionItems/test.png?s=200)
 
 # Install
 
